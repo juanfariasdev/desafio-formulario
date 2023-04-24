@@ -9,8 +9,8 @@ function Form(){
         </div>
         <InputLabel placeholder="Email" />
         <InputLabel placeholder="CPF" />
-        <InputLabel placeholder="Senha" />
-        <InputLabel placeholder="Confirmar Senha" />
+        <InputLabel placeholder="Senha" type="password"/>
+        <InputLabel placeholder="Confirmar Senha" type="password"/>
     </form>
     )
 }
