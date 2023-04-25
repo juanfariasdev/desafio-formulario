@@ -13,7 +13,7 @@ export function InputLabel({ error, id, register, ...rest }: any): JSX.Element {
   };
 
   return (
-    <div>
+    <div className="w-full">
       <input
         className="rounded bg-zinc-600 text-xl p-3 text-white w-full fill-white reval"
         type="text"
