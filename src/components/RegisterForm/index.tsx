@@ -4,7 +4,7 @@ import { InputLabel } from "../input";
 
 import { cpf } from "cpf-cnpj-validator";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { object, string } from "yup";
+import { boolean, object, string } from "yup";
 
 const msgRequired = "Campo obrigatório";
 const schema = object({
@@ -16,9 +16,9 @@ const schema = object({
     .required(msgRequired)
     .min(3, "Deve conter pelo menos 3 dígitos"),
 
-  email: string().required(msgRequired).email("Email inválido"),
+  email: string().required(msgRequired).email("Email inválido").min(6, 'Deve conter pelo menos 6 dígitos'),
 
-  cpf: string().test((value) => (value ? cpf.isValid(value) : false)),
+  cpf: string().test({test:(value) => (value ? cpf.isValid(value) : false), message: 'Digite um CPF válido!'}),
 
   password: string().matches(
     /^(?=.*[a-z])(?=.*[0-9])(?=.{6,})/,
@@ -32,6 +32,7 @@ const schema = object({
       return this.parent.password === value;
     }
   ),
+  acceptTerms: boolean().test({test: (value)=> value, message: "Precisa aceitar os termos para se cadastrar"})
 });
 
 function RegisterForm() {
@@ -87,6 +88,11 @@ function RegisterForm() {
         register={register}
         error={errors?.confirmPassword?.message}
       />
+       <div>
+        <input type="checkbox" id="acceptTerms" {...register('acceptTerms')} value="true" />
+        <span className="pl-2">Aceito os termos e condições</span>
+      </div>
+      <p className="pt-1 text-red-500">{String(errors?.acceptTerms?.message)}</p>
       <button className="rounded bg-green-600 hover:bg-green-700 text-xl p-3 text-white w-full transition font-bold">
         Cadastrar
       </button>
