@@ -92,7 +92,7 @@ function RegisterForm() {
         <input type="checkbox" id="acceptTerms" {...register('acceptTerms')} value="true" />
         <span className="pl-2">Aceito os termos e condições</span>
       </div>
-      <p className="pt-1 text-red-500">{String(errors?.acceptTerms?.message)}</p>
+      <p className="pt-1 text-red-500">{errors?.acceptTerms?.message?.toString()}</p>
       <button className="rounded bg-green-600 hover:bg-green-700 text-xl p-3 text-white w-full transition font-bold">
         Cadastrar
       </button>
