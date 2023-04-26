@@ -25,7 +25,7 @@ const schema = object({
     "Deve conter pelo menos 6 dígitos tendo pelo menos um número e uma letra minuscula"
   ),
 
-  confirmPassword: string().test(
+  confirmPassword: string().required(msgRequired).test(
     "password-should-match",
     "As senhas devem ser iguais",
     function (value) {
