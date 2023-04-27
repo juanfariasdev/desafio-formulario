@@ -35,15 +35,24 @@ const schema = object({
   acceptTerms: boolean().test({test: (value)=> value, message: "Precisa aceitar os termos para se cadastrar"})
 });
 
+interface IFormInputs {
+  firstName: string;
+  lastName: string;
+  email: string;
+  cpf: string;
+  password: string;
+  confirmPassword: string;
+  acceptTerms: boolean;
+}
 function RegisterForm() {
   const {
     handleSubmit: onSubmit,
     register,
     formState: { errors },
-  } = useForm({
+  } = useForm<IFormInputs>({
     resolver: yupResolver(schema),
   });
-  const handleSubmit = (data: any) => {
+  const handleSubmit = (data: IFormInputs) => {
     console.log(data);
   };
   return (
