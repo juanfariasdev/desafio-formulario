@@ -15,7 +15,10 @@ const schema = object({
     .required(msgRequired)
     .min(3, "Deve conter pelo menos 3 dígitos"),
 
-  email: string().required(msgRequired).email("Email inválido").min(6, 'Deve conter pelo menos 6 dígitos'),
+  email: string()
+    .required(msgRequired)
+    .email("Email inválido")
+    .min(6, "Deve conter pelo menos 6 dígitos"),
 
   cpf: string().test("cpf-invalid", "Digite um CPF válido!", (value) =>
     value ? cpf.isValid(value) : true
@@ -26,13 +29,15 @@ const schema = object({
     "Deve conter pelo menos 6 dígitos tendo pelo menos um número e uma letra minuscula"
   ),
 
-  confirmPassword: string().required(msgRequired).test(
-    "password-should-match",
-    "As senhas devem ser iguais",
-    function (value) {
-      return this.parent.password === value;
-    }
-  ),
+  confirmPassword: string()
+    .required(msgRequired)
+    .test(
+      "password-should-match",
+      "As senhas devem ser iguais",
+      function (value) {
+        return this.parent.password === value;
+      }
+    ),
   acceptTerms: boolean().test(
     "terms-erro",
     "Precisa aceitar os termos para se cadastrar",
@@ -61,7 +66,11 @@ function RegisterForm() {
     console.log(data);
   };
   return (
-    <form className="flex flex-col gap-3" onSubmit={onSubmit(handleSubmit)}>
+    <form
+      className="flex flex-col gap-3"
+      onSubmit={onSubmit(handleSubmit)}
+      noValidate
+    >
       <div className="flex gap-3">
         <InputLabel
           placeholder="Nome"
@@ -102,10 +111,17 @@ function RegisterForm() {
         register={register}
         error={errors?.confirmPassword?.message}
       />
-       <div>
-        <input type="checkbox" id="acceptTerms" {...register('acceptTerms')} value="true" />
+      <div>
+        <input
+          type="checkbox"
+          id="acceptTerms"
+          {...register("acceptTerms")}
+          value="true"
+        />
         <span className="pl-2">Aceito os termos e condições</span>
-        <p className="text-red-500">{errors?.acceptTerms?.message?.toString()}</p>
+        <p className="text-red-500">
+          {errors?.acceptTerms?.message?.toString()}
+        </p>
       </div>
       <button className="rounded bg-green-600 hover:bg-green-700 text-xl p-3 text-white w-full transition font-bold">
         Cadastrar
