@@ -18,7 +18,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ptBR">
+    <html lang="pt-br">
       <body className={inter.className}>
         <div className="flex min-h-screen justify-between flex-col lg:flex-row">
           <main className="bg-zinc-900 text-white min-h-[500px] lg:max-w-xl w-full rounded-t-2xl lg:rounded-t-none lg:rounded-r-2xl flex flex-col justify-center p-10 lg:px-20 order-2 lg:order-1">
