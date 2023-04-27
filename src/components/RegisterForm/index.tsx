@@ -1,10 +1,9 @@
 "use client";
 import { useForm } from "react-hook-form";
 import { InputLabel } from "../input";
-
-import { cpf } from "cpf-cnpj-validator";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { boolean, object, string } from "yup";
+import { cpf } from "cpf-cnpj-validator";
 
 const msgRequired = "Campo obrigatório";
 const schema = object({
