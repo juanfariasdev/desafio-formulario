@@ -20,7 +20,7 @@ export default function DashboardLayout({
   return (
     <html lang="pt-br">
       <body className={inter.className}>
-        <div className="flex min-h-screen justify-between flex-col lg:flex-row bg-zinc-900 p-6">
+          <div className="flex min-h-screen justify-between flex-col lg:flex-row bg-zinc-900 p-4">
           <aside className="text-gray-400 font-bold flex-col w-72  flex py-10 pr-6">
             {/* Perfil */}
             <div className="flex gap-2 items-center w-full pb-3 mb-3 border-b border-gray-500">
@@ -43,7 +43,7 @@ export default function DashboardLayout({
               <Menu />
             </nav>
           </aside>
-          <main className="bg-white flex-1 rounded-3xl flex justify-center items-center">
+            <main className="bg-white flex-1 rounded-3xl px-8 py-6">
             {children}
           </main>
         </div>
