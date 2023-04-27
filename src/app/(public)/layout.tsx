@@ -8,7 +8,7 @@ import "../globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Empregos e Estágios Federais",
+  title: "Academia do Aluno",
   description: "Criado para facilitar o encontro de emprego",
 };
 
@@ -32,7 +32,7 @@ export default function RootLayout({
               width={500}
             />
             <h1 className="text-3xl font-bold">Seja muito bem-vindo!</h1>
-            <p className="text-xl">Veio procurar emprego ou um estágio?</p>
+            <p className="text-xl">Veio melhorar suas habilidades?</p>
             <p className="text-xl">Vamos te ajudar =)</p>
           </aside>
         </div>
