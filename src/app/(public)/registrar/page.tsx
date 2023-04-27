@@ -1,5 +1,3 @@
-import Image from "next/image";
-import Hero from "../../../assets/hero.jpg";
 import { RegisterForm } from "@/components/RegisterForm";
 import Link from "next/link";
 
