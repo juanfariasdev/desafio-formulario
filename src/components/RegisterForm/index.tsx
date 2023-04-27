@@ -17,7 +17,9 @@ const schema = object({
 
   email: string().required(msgRequired).email("Email inválido").min(6, 'Deve conter pelo menos 6 dígitos'),
 
-  cpf: string().test({test:(value) => (value ? cpf.isValid(value) : false), message: 'Digite um CPF válido!'}),
+  cpf: string().test("cpf-invalid", "Digite um CPF válido!", (value) =>
+    value ? cpf.isValid(value) : true
+  ),
 
   password: string().matches(
     /^(?=.*[a-z])(?=.*[0-9])(?=.{6,})/,
@@ -31,7 +33,11 @@ const schema = object({
       return this.parent.password === value;
     }
   ),
-  acceptTerms: boolean().test({test: (value)=> value, message: "Precisa aceitar os termos para se cadastrar"})
+  acceptTerms: boolean().test(
+    "terms-erro",
+    "Precisa aceitar os termos para se cadastrar",
+    (value) => value
+  ),
 });
 
 interface IFormInputs {
