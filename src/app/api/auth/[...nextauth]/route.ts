@@ -9,6 +9,10 @@ export const authOptions = {
       clientSecret: process.env.GITHUB_SECRET!,
     }),
   ],
+  pages: {
+    signIn: "/dashbaord",
+    signOut: "/",
+  },
 };
 const handler = NextAuth(authOptions);
 
