@@ -1,5 +1,6 @@
 "use client";
 
+import { signOut } from "next-auth/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -23,6 +24,16 @@ export function Menu() {
           </div>
         </Link>
       ))}
+      <div
+        className={`hover:text-gray-50 hover:opacity-95 hover:bg-zinc-800 rounded`}
+      >
+        <button
+          onClick={() => signOut()}
+          className="text-left w-full h-full px-4 py-2"
+        >
+          Sair
+        </button>
+      </div>
     </>
   );
 }

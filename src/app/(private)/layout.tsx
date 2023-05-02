@@ -1,19 +1,29 @@
+import { redirect } from "next/navigation";
 import Image from "next/image";
 
 import { Menu } from "@/components/menu";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../api/auth/[...nextauth]/route";
 
-export default function DashboardLayout({
+export default async function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const session = await getServerSession(authOptions);
+
+  if (!session?.user) {
+    redirect("/");
+  }
+
+  console.log(session?.user);
   return (
     <div className="flex min-h-screen justify-between flex-col lg:flex-row bg-zinc-900 p-4">
       <aside className="text-gray-400 font-bold flex-col w-72  flex py-10 pr-6">
         {/* Perfil */}
         <div className="flex gap-2 items-center w-full pb-3 mb-3 border-b border-gray-500">
           <Image
-            src={"https://github.com/juanfariasdev.png"}
+            src={session?.user?.image || ""}
             alt={""}
             className="rounded-full w-16"
             width={75}
@@ -21,7 +31,7 @@ export default function DashboardLayout({
           />
           <div className="flex flex-col ">
             <h3 className="text-white text-lg overflow-hidden text-ellipsis whitespace-nowrap max-w-[20ch]">
-              Juan Pablo Farias
+              {session?.user?.name}
             </h3>
             <span className="text-lg font-normal">Administrador</span>
           </div>

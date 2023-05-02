@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import { InputLabel } from "../input";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { object, string } from "yup";
+import Link from "next/link";
+import { SocialLogin } from "./socialLogin";
 
 const msgRequired = "Campo obrigatório";
 const schema = object({
@@ -26,24 +28,36 @@ function LoginForm() {
   };
 
   return (
-    <form className="flex flex-col gap-3" onSubmit={onSubmit(handleSubmit)}>
-      <InputLabel
-        placeholder="Email"
-        id="email"
-        register={register}
-        error={errors?.email?.message}
-      />
-      <InputLabel
-        placeholder="Senha"
-        type="password"
-        id="password"
-        register={register}
-        error={errors?.password?.message}
-      />
-      <button className="rounded bg-yellow-500 hover:bg-yellow-600 text-xl p-3 text-white w-full transition font-bold">
-        Login
-      </button>
-    </form>
+    <>
+      <form className="flex flex-col gap-3" onSubmit={onSubmit(handleSubmit)}>
+        <InputLabel
+          placeholder="Email"
+          id="email"
+          register={register}
+          error={errors?.email?.message}
+        />
+        <InputLabel
+          placeholder="Senha"
+          type="password"
+          id="password"
+          register={register}
+          error={errors?.password?.message}
+        />
+        <button className="rounded bg-yellow-500 hover:bg-yellow-600 text-xl p-3 text-white w-full transition font-bold">
+          Login
+        </button>
+      </form>
+      <p className="p-2">
+        Não possui conta?{" "}
+        <Link
+          href="/registrar"
+          className="text-green-500 hover:text-green-600 font-bold"
+        >
+          Cadastrar
+        </Link>
+      </p>
+      <SocialLogin />
+    </>
   );
 }
 
