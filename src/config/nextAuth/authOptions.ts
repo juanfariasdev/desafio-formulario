@@ -9,7 +9,7 @@ export const authOptions = {
     }),
   ],
   pages: {
-    signIn: "/dashbaord",
+    signIn: "/dashboard",
     signOut: "/",
   },
 };
