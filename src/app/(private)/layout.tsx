@@ -3,7 +3,7 @@ import Image from "next/image";
 
 import { Menu } from "@/components/menu";
 import { getServerSession } from "next-auth";
-import { authOptions } from "../api/auth/[...nextauth]/route";
+import { authOptions } from "@/config/nextAuth/authOptions";
 
 export default async function DashboardLayout({
   children,
